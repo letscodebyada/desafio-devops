@@ -18,7 +18,7 @@ Um diferencial é adicionar um conteúdo informativo que julgue ser útil ao pro
 Lembre-se de considerar as melhores práticas como se fosse um ambiente de produção.
  
 ### **Escopo**:
-A Let's by Ada está migrando sua infraestrutura do On Premises para Cloud Pública. Ela deseja utilizar todos os benefícios que a computação distribuída oferece como escalabilidade, elasticidade, redução de custos, segurança e rápido provisionamento. Atualmente a empresa conta com uma aplicação monolítica rodando em um único servidor e deseja segmentá-la em microserviços. Será necessário a criação de uma nova rede para hospedar as aplicações, segmentar a atual aplicação Let 's by Ada em front-end, back-end e banco de dados em containers, provisionar os recursos utilizando IaC, promover alta disponibilidade e providenciar observability para as aplicações.
+A Let’s Code by Ada está migrando sua infraestrutura do On Premises para Cloud Pública. Ela deseja utilizar todos os benefícios que a computação distribuída oferece como escalabilidade, elasticidade, redução de custos, segurança e rápido provisionamento. Atualmente a empresa conta com uma aplicação monolítica rodando em um único servidor e deseja segmentá-la em microserviços. Será necessário a criação de uma nova rede para hospedar as aplicações, segmentar a atual aplicação Let’s Code by Ada em Front-end, Back-end e Banco de dados em containers, provisionar os recursos utilizando IaC, promover alta disponibilidade e providenciar observability para as aplicações.
  
 Você é a pessoa responsável por executar a migração. Você pode escolher entre AWS, Azure ou GCP para prover o desafio.
 
@@ -30,22 +30,22 @@ Sua aplicação irá rodar na nuvem e precisa de uma VPC configurada corretament
  
 ## **Desafio 01: Back-end**
  
-Necessidade
-Você recebeu acesso ao monolito da Let 's by Ada e é hora de segmentá-lo em microserviços. A aplicação deve oferecer três camadas isoladas: Front-end, Back-end e Banco de dados.  Os serviços devem ser executados em servidores Linux e em containers utilizando o Kubernetes.
+### **Necessidade**
+Você recebeu acesso ao monolito da Let’s Code by Ada e é hora de segmentá-lo em microserviços. A aplicação deve oferecer três camadas isoladas: Front-end, Back-end e Banco de dados.  Os serviços devem ser executados em servidores Linux e em containers utilizando o Kubernetes.
  
-Kubernetes atualmente é a principal ferramenta de orquestração e deployment de containers utilizado no mundo, praticamente tornando-se um padrão para abstração de recursos de infraestrutura.
+Lembrando que atualmente Kubernetes é a principal ferramenta de orquestração e deployment de containers utilizado no mundo, praticamente tornando-se um padrão para abstração de recursos de infraestrutura.
  
-Na Let's by Ada todos os nossos serviços serão conteinerizados e distribuídos em clusters para cada ambiente, sendo assim é importante que as aplicações sejam adaptáveis para cada ambiente e haja controle via código dos recursos Kubernetes através de seus manifestos.
+Na Let’s Code by Ada todos os nossos serviços serão conteinerizados e distribuídos em clusters para cada ambiente, sendo assim é importante que as aplicações sejam adaptáveis para cada ambiente e haja controle via código dos recursos Kubernetes através de seus manifestos.
  
 A comunicação entre os componentes deve ser realizada via HTTP e a utilização de filas no fluxo será um diferencial.  
  
 ### **Objetivo**
-Criar uma instância Linux no provedor Cloud escolhido utilizando Cloudformation, Terraform ou Ansible. 
-Pré-instalar o Java e suas dependências na instância para que suba automaticamente a API da aplicação Let's by Ada.
+Criar uma instância Linux no provedor Cloud escolhido utilizando CloudFormation, Terraform ou Ansible. 
+Pré-instalar o Java e suas dependências na instância para que suba automaticamente a API da aplicação Let’s Code by Ada.
 
 A instância deve abrir somente às portas 8080 e 443 para a internet. A porta SSH (22) deve estar acessível somente para um range IP definido.
  
-Escolha um banco de dados relacional de sua preferência e abra sua respectiva porta para conectar com a aplicação. O banco deve rodar em um PaaS do seu provedor Cloud.
+Escolha um banco de dados relacional de sua preferência e abra sua respectiva porta para conectar com a aplicação. O banco de dados deve rodar em um PaaS do seu provedor Cloud.
  
 Dentro do repositório na pasta **back-end** você irá encontrar o código da API Java. Você deve transformar esse código em um **Dockerfile** e colocar a aplicação em execução.
  
@@ -54,7 +54,7 @@ A aplicação precisa se conectar a um banco de dados e a conexão ocorre atrav�
 ![Application Backend Java](https://s3-sa-east-1.amazonaws.com/lcpi/f0d632a4-3e51-4d7f-9c18-5c75a257dc51.PNG)
 ##### Fonte da imagem: Imagem própria
  
-Após configurar o backend e o banco de dados é necessário criar um usuário para acessar a aplicação. Acesse o banco de dados pela forma que achar mais fácil e crie um usuário. Será necessário informar o **username** e **password**.
+Após configurar o back-end e o banco de dados é necessário criar um usuário para acessar a aplicação. Acesse o banco de dados pela forma que achar mais fácil e crie um usuário. Será necessário informar o **username** e **password**.
  
 ![Tabela Usuário](https://s3-sa-east-1.amazonaws.com/lcpi/9e3c8f37-44bc-4964-8740-0ea422fdec07.PNG)
 ##### Fonte da imagem: Imagem própria
@@ -62,13 +62,13 @@ Após configurar o backend e o banco de dados é necessário criar um usuário p
 ## **Desafio 02: Front-end**
  
 ### **Necessidade:**
-Após migrar o back-end da aplicação Let's by Ada para a cloud é hora de trabalharmos com o front-end. Você deve pensar no melhor serviço cloud para executar o front-end pensando em escalabilidade, facilidade de manutenção e otimização de custos. Na AWS uma boa escolha para este serviço pode ser o S3, mas fique à vontade para rodar essa aplicação em outro serviço e provedor de Cloud.
+Após migrar o back-end da aplicação Let’s Code by Ada para a cloud é hora de trabalharmos com o front-end. Você deve pensar no melhor serviço cloud para executar o front-end pensando em escalabilidade, facilidade de manutenção e otimização de custos. Na AWS uma boa escolha para este serviço pode ser o S3, mas fique à vontade para rodar essa aplicação em outro serviço e provedor de cloud.
  
 ### **Objetivo:**
  
-Dentro do repositório na pasta **frontend** você irá encontrar o código da aplicação Angular. Você deve transformar esse código em um **Dockerfile** e colocar a aplicação em execução. Lembre-se que para instalar as dependências da aplicação basta aplicar o comando **npm install** e para executá-lo aplique o comando **ng serve**.
+Dentro do repositório na pasta **frontend** você irá encontrar o código da aplicação em Angular. Você deve transformar esse código em um **Dockerfile** e colocar a aplicação em execução. Lembre-se que para instalar as dependências da aplicação basta aplicar o comando **npm install** e para executá-lo aplique o comando **ng serve**.
  
-Você deve alterar o apontamento para o backend através do arquivo **environment.ts** na pasta **src/environments**.
+Você deve alterar o apontamento para o back-end através do arquivo **environment.ts** na pasta **src/environments**.
  
 ![Envitoment Angular](https://s3-sa-east-1.amazonaws.com/lcpi/a14aa61a-5197-445d-aef4-9c2ad64715ad.PNG)
 ##### Fonte da imagem: Imagem própria
@@ -80,7 +80,7 @@ Após configurar a aplicação, realize o deploy e deve ser exibido a tela de lo
 ![Tela Login](https://s3-sa-east-1.amazonaws.com/lcpi/c92a1db7-fe23-43d7-84b0-ff7b3161e9c6.PNG)
 ##### Fonte da imagem: Imagem própria
  
-Logue com o usuário criado no desafio backend e deve ser exibido a tela home como mostra a imagem abaixo. 
+Logue com o usuário criado no desafio back-end e deve ser exibido a tela home como mostra a imagem abaixo. 
  
 ![Tela Home](https://s3-sa-east-1.amazonaws.com/lcpi/bec49cb2-03de-41b6-a5d6-88b9268c62b5.PNG)
 ##### Fonte da imagem: Imagem própria
