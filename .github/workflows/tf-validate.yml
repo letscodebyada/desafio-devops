@@ -10,7 +10,9 @@ env:
 steps:
 - uses: actions/checkout@v3
 - uses: hashicorp/setup-terraform@v2
-
+  with:
+    terraform_version: 1.3.4
+  
 - name: Terraform fmt
   run: terraform fmt -check
   continue-on-error: false
