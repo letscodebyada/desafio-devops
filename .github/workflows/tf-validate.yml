@@ -1,0 +1,22 @@
+name: Validate Terraform code
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+steps:
+- uses: actions/checkout@v3
+- uses: hashicorp/setup-terraform@v2
+
+- name: Terraform fmt
+  run: terraform fmt -check
+  continue-on-error: false
+
+- name: Terraform Init
+  run: terraform init
+
+- name: Terraform Validate
+  run: terraform validate -no-color
